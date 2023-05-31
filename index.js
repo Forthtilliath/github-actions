@@ -1,7 +1,8 @@
 const a = "opkpok";
 
-function test(ab) {
-  return `joij${ab}`;
-}
 
-test(a);
+                                function test(ab) {
+                 return 'joij' + ab
+}
+            
+test(a)
