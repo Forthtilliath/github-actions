@@ -8,6 +8,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Install dependencies
-        run: pnpm ci
+        run: npm ci
       - name: Lint and format code
         run: npm run lint && npm run format:check
