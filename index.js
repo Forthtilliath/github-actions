@@ -1,8 +1,8 @@
 const a = "opkpok";
 
 
-                                function test() {
-                 return 'joij'
+                                function test(ab) {
+                 return 'joij' + ab
 }
             
-console.log(test())
+test(a)
