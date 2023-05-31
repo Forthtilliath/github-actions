@@ -1,6 +1,6 @@
 const a = "opkpok";
 
-              function test(ab) {
+function test(ab) {
   return `joij${ab}`;
 }
 
