@@ -13,3 +13,9 @@ jobs:
 
       - name: Lint and format code
         run: npm run lint && npm run format
+
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Apply Prettier formatting
+          commit_options: '--no-verify'
