@@ -19,3 +19,5 @@ jobs:
         with:
           commit_message: Apply Prettier formatting
           commit_options: '--no-verify'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
