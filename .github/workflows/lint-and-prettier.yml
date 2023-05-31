@@ -27,12 +27,10 @@ jobs:
           git config --global user.email "github-actions@github.com"
           git config --global user.name "GitHub Actions"
           git add --all
-      - name: Commit changes
-        run: |
-          git commit -m "Auto-commit changes" -a
-      - name: Push changes
+      - name: Commit  & Push changes
         run: |
           if [ "${{ github.actor }}" != "github-actions[bot]" ]; then
+            git commit -m "Auto-commit changes" -a
             git push
           else
             echo "Skipping push for internal commit"
