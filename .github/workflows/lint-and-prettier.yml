@@ -5,33 +5,31 @@ jobs:
   lint-and-prettier:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-        with:
-          token: ${{ secrets.GH_TOKEN }}
+    - name: Checkout code
+      uses: actions/checkout@v3
+      with:
+        token: ${{ secrets.GH_TOKEN }}
 
-      - name: Install dependencies
-        run: npm ci
+    - name: Install dependencies
+      run: npm ci
 
-      - name: Lint and format code
-        run: npm run lint && npm run format
+    - name: Lint and format code
+      run: npm run lint && npm run format
 
-      # - name: Commit changes
-      #   uses: stefanzweifel/git-auto-commit-action@v4
-      #   with:
-      #     commit_message: Apply Prettier formatting
-      #     commit_options: '--no-verify'
+    # - name: Commit changes
+    #   uses: stefanzweifel/git-auto-commit-action@v4
+    #   with:
+    #     commit_message: Apply Prettier formatting
+    #     commit_options: '--no-verify'
 
-      - name: Add changes
-        run: |
+    - name: Commit  & Push changes
+      run: |
+        if [[ `git status --porcelain` ]]; then
           git config --global user.email "github-actions@github.com"
           git config --global user.name "GitHub Actions"
           git add --all
-      - name: Commit  & Push changes
-        run: |
-          if [ "${{ github.actor }}" != "github-actions[bot]" ]; then
-            git commit -m "Auto-commit changes" -a
-            git push
-          else
-            echo "Skipping push for internal commit"
-          fi
+          git commit -m "Auto-commit changes" -a
+          git push
+        else
+          echo "File has not been modified"
+        fi
