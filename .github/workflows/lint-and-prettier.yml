@@ -32,4 +32,8 @@ jobs:
           git commit -m "Auto-commit changes" -a
       - name: Push changes
         run: |
-          git push
+          if [ "${{ github.actor }}" != "github-actions[bot]" ]; then
+            git push
+          else
+            echo "Skipping push for internal commit"
+          fi
