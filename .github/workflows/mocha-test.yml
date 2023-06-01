@@ -1,11 +1,13 @@
 name: Tests
+run-name: Mocha tests
+
 on: push
 jobs:
   test:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [16.x]
+    # strategy:
+    #   matrix:
+    #     node-version: [16.x]
     steps:
       # Check out the code from the repository
       - name: Checkout code
