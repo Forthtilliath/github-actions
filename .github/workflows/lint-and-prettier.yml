@@ -1,4 +1,5 @@
 name: Lint and Prettier
+run-name: Lint and Prettier
 on: [push, pull_request]
 
 jobs:
