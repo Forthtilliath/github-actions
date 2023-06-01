@@ -1,7 +1,6 @@
-const a = "opkpok";
-
-function test(ab) {
-  return `joij${ab}`;
+export function sum(a, b) {
+  return a + b;
 }
 
-test(a);
+sum(1, 2);
+sum(1, 2, 3);
