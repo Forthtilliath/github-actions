@@ -5,9 +5,9 @@ on: push
 jobs:
   test:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [10.x, 12.x, 14.x]
+    # strategy:
+    #   matrix:
+    #     node-version: [10.x, 12.x, 14.x]
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -19,7 +19,7 @@ jobs:
 
       - run: npm test
         if: ${{ failure() }}
-        
+
       - name: Cancel commit on failure
         if: ${{ failure() }}
         uses: actions/github-script@v4
