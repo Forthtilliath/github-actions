@@ -32,5 +32,6 @@ jobs:
         with:
           github-token: ${{ secrets.GH_TOKEN }}
           script: |
-            const { default: script } = await import('./scripts/revert-commit');
+            // const { default: script } = await import('./scripts/revert-commit');
+            import script from './scripts/revert-commit';
             await script({ github, context });
