@@ -31,9 +31,9 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const { context: ctx, github } = require('@actions/github');
+            const { context: ctx, github:gh } = require('@actions/github');
             const sha = ctx.sha;
-            await github.repos.createCommitStatus({
+            await gh.repos.createCommitStatus({
                 owner: ctx.repo.owner,
                 repo: ctx.repo.repo,
                 sha: sha,
