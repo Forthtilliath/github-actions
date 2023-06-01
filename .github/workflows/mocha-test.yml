@@ -28,10 +28,9 @@ jobs:
       # Cancel the commit and close the pull request if the tests fail
       - name: Cancel commit on failure
         if: ${{ failure() }}
-        # Source de l'erreur node v12
         uses: actions/github-script@v6
         with:
           github-token: ${{ secrets.GH_TOKEN }}
           script: |
-            const script = require('../scripts/revert-commit.js');
+            const { default: script } = await import('${{ github.workspace }}/.github/scripts/revert-commit.js');
             await script({ github, context });
