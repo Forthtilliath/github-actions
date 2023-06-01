@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [16.x]
     steps:
       # Check out the code from the repository
       - name: Checkout code
@@ -28,9 +28,10 @@ jobs:
       # Cancel the commit and close the pull request if the tests fail
       - name: Cancel commit on failure
         if: ${{ failure() }}
+        # Source de l'erreur node v12
         uses: actions/github-script@v5
         with:
           github-token: ${{ secrets.GH_TOKEN }}
           script: |
-            const script = require('./revert-commit.js');
+            const script = require('./scripts/revert-commit.js');
             await script({ github, context });
