@@ -1,5 +1,5 @@
 module.exports = async ({ github, context }) => {
-  const sha = context.sha;
+  const { sha } = context;
   const { data: commit } = await github.git.getCommit({
     owner: context.repo.owner,
     repo: context.repo.repo,
@@ -11,7 +11,7 @@ module.exports = async ({ github, context }) => {
   const { data: newCommit } = await github.git.createCommit({
     owner: context.repo.owner,
     repo: context.repo.repo,
-    message: message,
+    message,
     tree: treeSha,
     parents: [parentSha],
   });
