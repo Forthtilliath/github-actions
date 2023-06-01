@@ -1,4 +1,4 @@
-module.exports = async ({ github, context }) => {
+export default async ({ github, context }) => {
   const { sha } = context;
   const { data: commit } = await github.git.getCommit({
     owner: context.repo.owner,
