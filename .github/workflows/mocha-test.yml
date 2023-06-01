@@ -31,11 +31,10 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const { context: ctx, github:gh } = require('@actions/github');
-            const sha = ctx.sha;
-            await gh.repos.createCommitStatus({
-                owner: ctx.repo.owner,
-                repo: ctx.repo.repo,
+            const sha = context.sha;
+            await github.repos.createCommitStatus({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
                 sha: sha,
                 state: 'failure',
                 context: 'Tests',
