@@ -5,9 +5,6 @@ on: push
 jobs:
   test:
     runs-on: ubuntu-latest
-    # strategy:
-    #   matrix:
-    #     node-version: [16.x]
     steps:
       # Check out the code from the repository
       - name: Checkout code
@@ -34,23 +31,13 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const { data: pullRequest } = await github.pulls.get({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              pull_number: context.payload.pull_request.number,
-            });
-            console.log('Pull request:', pullRequest);
+            const { context, github } = require('@actions/github');
+            const sha = context.sha;
             await github.repos.createCommitStatus({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              sha: pullRequest.head.sha,
-              state: 'failure',
-              context: 'Tests',
-              description: 'Tests failed',
-            });
-            await github.pulls.update({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              pull_number: context.payload.pull_request.number,
-              state: 'closed',
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                sha: sha,
+                state: 'failure',
+                context: 'Tests',
+                description: 'Tests failed',
             });
