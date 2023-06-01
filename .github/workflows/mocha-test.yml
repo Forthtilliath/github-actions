@@ -33,7 +33,7 @@ jobs:
           github-token: ${{ secrets.GH_TOKEN }}
           script: |
             const sha = context.sha;
-            console.log(github);
+            console.log(github.git);
             const { data: commit } = await github.git.getCommit({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
