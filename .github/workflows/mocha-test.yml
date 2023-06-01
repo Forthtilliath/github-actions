@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      
+
       - name: Use Node.js
         uses: actions/setup-node@v1
         with:
@@ -19,7 +19,7 @@ jobs:
 
       - run: npm test
         if: ${{ failure() }}
-        
+
       - name: Cancel commit on failure
         if: ${{ failure() }}
         uses: actions/github-script@v4
