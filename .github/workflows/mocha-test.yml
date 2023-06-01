@@ -28,7 +28,7 @@ jobs:
       # Cancel the commit and close the pull request if the tests fail
       - name: Cancel commit on failure
         if: ${{ failure() }}
-        uses: actions/github-script@v4
+        uses: actions/github-script@v5
         with:
           github-token: ${{ secrets.GH_TOKEN }}
           script: |
