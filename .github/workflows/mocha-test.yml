@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [18.x]
     steps:
       # Check out the code from the repository
       - name: Checkout code
@@ -32,5 +32,5 @@ jobs:
         with:
           github-token: ${{ secrets.GH_TOKEN }}
           script: |
-            import script from './revert-commit.js';
+            const script = require('./revert-commit.js');
             await script({ github, context });
