@@ -49,7 +49,7 @@ jobs:
                 tree: treeSha,
                 parents: [parentSha],
             });
-            await github.git.updateRef({
+            await github.rest.git.updateRef({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 ref: `heads/${context.ref.split("/").slice(2).join("/")}`,
