@@ -19,8 +19,6 @@ jobs:
       - name: Commit & Push changes
         run: |
           if [[ `git status --porcelain` ]]; then
-            git config --global user.email "github-actions@github.com"
-            git config --global user.name "GitHub Actions"
             git add --all
             git commit -m "Auto-commit changes" -a
             git push
