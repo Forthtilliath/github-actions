@@ -1,0 +1,17 @@
+name: 'Create issue on test failure'
+description: 'Creates a GitHub issue if a test fails.'
+inputs:
+  title:
+    description: 'The title of the issue.'
+    required: true
+    default: 'Test failed'
+  body:
+    description: 'The body of the issue.'
+    required: true
+    default: 'The test failed. Please check the logs for more information.'
+  assignees:
+    description: 'A list of GitHub usernames to assign to the issue.'
+    required: false
+runs:
+  using: 'node16'
+  main: 'index.js'

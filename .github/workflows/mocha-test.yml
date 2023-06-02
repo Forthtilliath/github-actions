@@ -33,3 +33,13 @@ jobs:
           github-token: ${{ secrets.GH_TOKEN }}
           script: |
             console.log("Cancel commit on failure");
+
+      - name: Create issue on failure
+        if: ${{ failure() }}
+        uses: ./.github/actions/create-issue-on-failure
+        with:
+          title: "Test failed"
+          body: "The test failed. Please check the logs for more information."
+          assignees: "octocat"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
