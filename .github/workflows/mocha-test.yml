@@ -1,5 +1,8 @@
 name: Tests
 run-name: Mocha tests
+permissions:
+  contents: read
+  issues: write 
 
 on: push
 jobs:
