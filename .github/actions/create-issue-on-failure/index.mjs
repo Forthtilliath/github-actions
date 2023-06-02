@@ -2,11 +2,11 @@ import core from "@actions/core";
 import github from "@actions/github";
 import fetch from "node-fetch";
 
-async function createIssue(title, body, assignees) {
+async function createIssue(title, body) {
   const owner = github.context.repo.owner;
   const repo = github.context.repo.repo;
   const url = `https://api.github.com/repos/${owner}/${repo}/issues`;
-  const data = { title, body, assignees };
+  const data = { title, body, owner, repo };
   const response = await fetch(url, {
     method: "POST",
     headers: {

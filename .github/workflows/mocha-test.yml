@@ -43,6 +43,5 @@ jobs:
         with:
           title: "Test failed"
           body: "The test failed. Please check the logs for more information."
-          assignees: "octocat"
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
