@@ -7,7 +7,6 @@ async function createIssue(title, body, assignees) {
   const repo = github.context.repo.repo;
   const url = `https://api.github.com/repos/${owner}/${repo}/issues`;
   const data = { title, body, assignees };
-  console.log("Logs: ", title, body, assignees);
   const response = await fetch(url, {
     method: "POST",
     headers: {
@@ -16,6 +15,7 @@ async function createIssue(title, body, assignees) {
     },
     body: JSON.stringify(data),
   });
+  console.log("Logs: ", owner, repo);
   if (!response.ok) {
     throw new Error(
       `Failed to create issue: ${response.status} ${response.statusText}`
