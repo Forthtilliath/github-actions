@@ -32,27 +32,4 @@ jobs:
         with:
           github-token: ${{ secrets.GH_TOKEN }}
           script: |
-            const sha = context.sha;
-            console.log(...Object.keys(github), github.rest);
-            const { data: commit } = await github.rest.git.getCommit({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                commit_sha: sha,
-            });
-            const treeSha = commit.tree.sha;
-            const parentSha = commit.parents[0].sha;
-            const message = `Revert "${commit.message}"\n\nThis reverts commit ${sha}.`;
-            const { data: newCommit } = await github.rest.git.createCommit({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                message: message,
-                tree: treeSha,
-                parents: [parentSha],
-            });
-            await github.rest.git.updateRef({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                ref: `heads/${context.ref.split("/").slice(2).join("/")}`,
-                sha: newCommit.sha,
-                force: true,
-            });
+            console.log("Cancel commit on failure");
