@@ -15,6 +15,7 @@ async function createIssue(title, body, assignees) {
     },
     body: JSON.stringify(data),
   });
+  console.log(title, body, assignees);
   if (!response.ok) {
     throw new Error(
       `Failed to create issue: ${response.status} ${response.statusText}`
